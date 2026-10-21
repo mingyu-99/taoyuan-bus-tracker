@@ -1,33 +1,30 @@
-# 🚌 桃園公車即時動態與地圖視覺化系統
+# 🚌 桃園公車即時查詢系統
 
-這是一個基於 Python 與 Streamlit 打造的即時公車查詢網頁應用，專門串接交通部 TDX RESTful API，並結合 Folium 動態地圖與 Polyline 路線還原，提供直觀流暢的公車動態追蹤體驗。
-
----
-
-## 🌟 核心功能
-
-* **智慧路線查詢**：支援關鍵字即時搜尋桃園公車路線（例如 112、BR 等），並透過下拉選單快速切換。
-* **地圖軌跡視覺化**：透過 `polyline` 解析 TDX 提供的圖資，在地圖上精準繪製公車行經路線與沿途站牌。
-* **即時互動標記**：
-  * **Tooltip**：滑鼠游標懸停即可檢視站名。
-  * **Popup**：點擊站牌即可查看詳細的即時預估到站時間（ETA）與車牌號碼。
-* **效能與資安優化**：導入 Streamlit 快取機制（`@st.cache_data`）與 `.env` 環境變數管理，兼具高效能與高度資安防護。
+這是一個基於 **Streamlit** 與 **Folium** 開發的桃園市公車即時動態查詢系統。透過串接交通部 **TDX 運輸資料流通服務 API**，提供即時路線搜尋、預估到站時間（ETA）、公車即時位置與車牌資訊，並在互動式地圖上繪製公車行駛軌跡與站點動態。
 
 ---
 
-## 🛠️ 使用技術 (Tech Stack)
-
-* **Language**: Python
-* **Frontend / UI**: Streamlit
-* **API Integration**: 交通部 TDX RESTful API (OAuth2 Token 認證)
-* **Map & Visualization**: Folium, Streamlit-Folium, Polyline
-* **Environment & Security**: python-dotenv (`.env`)
+## 📌 功能特色
+* **即時動態查詢**：查詢桃園市公車各路線之預估到站時間（進站中、即將到站、尚需等待等狀態標示）。
+* **互動式地圖繪製**：
+  * 使用 Folium 呈現地圖與公車路線軌跡（Polyline 解碼）。
+  * 標記各公車站點，並以不同顏色圖示標示到站狀態。
+  * 地圖彈出視窗（Popup）與懸停標籤（Tooltip）即時顯示站名、到站分鐘數及車牌號碼。
+* **路線搜尋與篩選**：支援關鍵字即時過濾路線（如：`112`、`BR`）。
+* **快取優化 (Streamlit Cache)**：使用 `st.cache_data` 對 API 請求進行快取（Token、路線、站點及預估到站時間），提升載入速度與節省 API 調用次數。
 
 ---
 
-## 🚀 本地端執行步驟 (Installation & Running)
+## 🛠️ 環境與套件需求
+* **Python 3.x**
+* **第三方套件**：
+  * `streamlit`：Web 應用程式介面
+  * `requests`：API 請求
+  * `python-dotenv`：管理環境變數 (.env)
+  * `folium` & `streamlit-folium`：互動式地圖繪製
+  * `polyline`：解碼路線軌跡座標
 
-1. **Clone 本專案至本地端**：
-   ```bash
-   https://github.com/mingyu-99/taoyuan-bus-tracker.git
-   cd taoyuan-bus-tracker
+### 安裝必要套件
+請在終端機或命令提示字元（CMD）執行以下指令：
+```bash
+pip install streamlit requests python-dotenv folium streamlit-folium polyline
