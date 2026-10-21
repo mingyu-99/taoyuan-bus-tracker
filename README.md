@@ -29,5 +29,5 @@
 
 1. **Clone 本專案至本地端**：
    ```bash
-   git clone https://github.com/mingyu-99/taoyuan-bus-tracker.git
+   https://github.com/mingyu-99/taoyuan-bus-tracker.git
    cd taoyuan-bus-tracker
